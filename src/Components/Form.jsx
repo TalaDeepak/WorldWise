@@ -27,7 +27,7 @@ function Form() {
   const [lat, lng] = useUrlPosition();
   const navigate = useNavigate();
 
-  const { flagemojiToPNG, createCity, isLoading } = useCities();
+  const { createCity, isLoading } = useCities();
   const [isLoadingGeocoding, setIsLoadingGeocoading] = useState(false);
   const [cityName, setCityName] = useState("");
   const [country, setCountry] = useState("");
@@ -55,7 +55,6 @@ function Form() {
 
           setCityName(data.city || data.locality || "");
           setEmoji(convertToEmoji(data.countryCode));
-          setEmoji((pr) => flagemojiToPNG(pr));
           setCountry(data.countryName);
         } catch (err) {
           setGeoCodingError(err.message);
@@ -73,7 +72,7 @@ function Form() {
 
     if (!cityName || !date) return;
 
-    const newCity = {
+    const newCity1 = {
       cityName,
       country,
       emoji,
@@ -82,7 +81,7 @@ function Form() {
       position: { lat, lng },
     };
 
-    await createCity(newCity);
+    await createCity(newCity1);
     navigate("/app");
   }
 

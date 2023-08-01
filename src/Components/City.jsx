@@ -16,13 +16,13 @@ const formatDate = (date) =>
 
 function City() {
   const { id } = useParams();
-  const { getCity, currentCity, isLoading,flagemojiToPNG } = useCities();
+  const { getCity, currentCity, isLoading, flagemojiToPNG } = useCities();
 
   useEffect(
     function () {
       getCity(id);
     },
-    [id]
+    [id, getCity]
   );
 
   const { cityName, emoji, date, notes } = currentCity;
